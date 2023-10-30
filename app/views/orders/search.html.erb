@@ -1,0 +1,10 @@
+<h2>Resultados da Busca por: <%= @code %> </h2>
+<% if @orders.present? %>
+  <p><%= @orders.count %> <%= Order.model_name.human(count: @orders.count).downcase %> <%= t(:found, count: @orders.count) %></p>
+  <% @orders.each do |order| %>
+    <%= render order %>
+  <% end %>
+<% else %>
+  <p>Nenhum resultado encontrado</p>
+<% end%>
+

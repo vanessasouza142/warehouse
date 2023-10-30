@@ -1,0 +1,17 @@
+pt-BR:
+  activerecord:
+    models:
+      order: 
+        one: 'Pedido'
+        other: 'Pedidos'
+
+    attributes:
+      order:
+        warehouse_id: 'Galpão Destino' #banco de dados
+        warehouse: 'Galpão Destino' #o que o belongs_to cria
+        supplier_id: 'Fornecedor'
+        supplier: 'Fornecedor'
+        user_id: 'Usuário Responsável'
+        user: 'Usuário Responsável'
+        estimated_delivery_date: 'Data Prevista de Entrega'
+        code: 'Código'

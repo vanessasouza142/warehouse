@@ -1,0 +1,5 @@
+  <div>
+    <Strong><%= Order.human_attribute_name(:code) %></strong>: <%= link_to order.code, order %>
+    <Strong><%= Order.human_attribute_name(:warehouse_id) %></strong>: <%= order.warehouse.full_description %>
+    <Strong><%= Order.human_attribute_name(:supplier_id) %></strong>: <%= order.supplier.corporate_name %>
+  </div>

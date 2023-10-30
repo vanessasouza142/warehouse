@@ -1,10 +1,25 @@
 require 'rails_helper'
 
 describe 'Usuário vẽ modelos de produtos' do
-  it 'a partir do menu' do
+  it 'se estiver autenticado' do
     #Arrange
 
     #Act
+    visit root_path
+    within('nav') do
+      click_on 'Modelos de Produtos'
+    end
+
+    #Assert
+    #espera que o devise lhe direcione para a tela de login
+    expect(current_path).to eq new_user_session_path
+  end
+
+  it 'a partir do menu' do
+    #Arrange
+    user = User.create!(name: 'Vanessa Souza', email: 'vanessa@gmail.com', password: 'password')
+    #Act
+    login_as(user)
     visit root_path
     within('nav') do
       click_on 'Modelos de Produtos'
@@ -20,8 +35,10 @@ describe 'Usuário vẽ modelos de produtos' do
                                 full_address: 'Av. Paulista, 6000', city: 'São Paulo', state: 'SP', email: 'sac@sansung.com.br')
     ProductModel.create!(name: 'TV 32', weight: 8000, width: 70, height: 45, depth: 10, sku: 'TV32-SANSU-XPTO90', supplier: supplier)
     ProductModel.create!(name: 'TV 50', weight: 12000, width: 120, height: 60, depth: 18, sku: 'TV50-SANSU-TRESO90', supplier: supplier)
+    user = User.create!(name: 'Vanessa Souza', email: 'vanessa@gmail.com', password: 'password')
 
     #Act
+    login_as(user)
     visit root_path
     within('nav') do
       click_on 'Modelos de Produtos'
@@ -39,8 +56,10 @@ describe 'Usuário vẽ modelos de produtos' do
 
   it 'e não existem produtos cadastrados' do
     #Arrange
+    user = User.create!(name: 'Vanessa Souza', email: 'vanessa@gmail.com', password: 'password')
 
     #Act
+    login_as(user)
     visit root_path
     within('nav') do
       click_on 'Modelos de Produtos'

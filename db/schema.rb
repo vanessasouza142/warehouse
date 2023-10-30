@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_10_26_175315) do
+ActiveRecord::Schema[7.1].define(version: 2023_10_28_183255) do
+  create_table "orders", force: :cascade do |t|
+    t.integer "warehouse_id", null: false
+    t.integer "supplier_id", null: false
+    t.integer "user_id", null: false
+    t.date "estimated_delivery_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "code"
+    t.index ["supplier_id"], name: "index_orders_on_supplier_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
+    t.index ["warehouse_id"], name: "index_orders_on_warehouse_id"
+  end
+
   create_table "product_models", force: :cascade do |t|
     t.string "name"
     t.integer "weight"
@@ -36,6 +49,19 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_26_175315) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
   create_table "warehouses", force: :cascade do |t|
     t.string "name"
     t.string "code"
@@ -48,5 +74,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_26_175315) do
     t.string "description"
   end
 
+  add_foreign_key "orders", "suppliers"
+  add_foreign_key "orders", "users"
+  add_foreign_key "orders", "warehouses"
   add_foreign_key "product_models", "suppliers"
 end

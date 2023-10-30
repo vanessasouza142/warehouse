@@ -7,8 +7,10 @@ describe 'Usuário cadastra modelo de produto' do
                                 full_address: 'Av. Paulista, 6000', city: 'São Paulo', state: 'SP', email: 'sac@sansung.com.br')
     other_supplier = Supplier.create!(corporate_name: 'LG eletronicos Ltda', brand_name: 'LG', registration_number: '548746548784',
                                 full_address: 'Av. Ibirapuera, 300', city: 'São Paulo', state: 'SP', email: 'sac@lg.com.br')
+    user = User.create!(name: 'Vanessa Souza', email: 'vanessa@gmail.com', password: 'password')
 
     #Act
+    login_as(user)
     visit root_path
     click_on 'Modelos de Produtos'
     click_on 'Cadastrar modelo de produto'
@@ -34,8 +36,10 @@ describe 'Usuário cadastra modelo de produto' do
     #Arrange
     supplier = Supplier.create!(corporate_name: 'Sansung eletronicos Ltda', brand_name: 'Sansung', registration_number: '4578987545',
     full_address: 'Av. Paulista, 6000', city: 'São Paulo', state: 'SP', email: 'sac@sansung.com.br')
+    user = User.create!(name: 'Vanessa Souza', email: 'vanessa@gmail.com', password: 'password')
 
     #Act
+    login_as(user)
     visit root_path
     click_on 'Modelos de Produtos'
     click_on 'Cadastrar modelo de produto'

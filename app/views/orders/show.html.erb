@@ -1,0 +1,8 @@
+<h2>Detalhes do Pedido</h2>
+<h3><%= Order.model_name.human %>: <%= @order.code %></h3>
+<Strong><%= Order.human_attribute_name(:warehouse_id) %></strong>: <%= @order.warehouse.full_description %>
+<Strong><%= Order.human_attribute_name(:supplier_id) %></strong>: <%= @order.supplier.corporate_name %>
+<Strong><%= Order.human_attribute_name(:user_id) %></strong>: <%= @order.user.description %>
+<Strong><%= Order.human_attribute_name(:estimated_delivery_date) %></strong>: <%= I18n.localize(@order.estimated_delivery_date) %>
+
+<%= link_to 'Editar', edit_order_path(@order.id) %>
